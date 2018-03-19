@@ -14,11 +14,11 @@
                     
                     <div class="form-group">
                         {!! Form::label('password', 'パスワード') !!}
-                        {!! Form::password('password', ['class' => 'form-group']) !!}
+                        {!! Form::password('password', ['class' => 'form-control']) !!}
                     </div>
                     
                     <div class='text-rigth'>
-                        {!! Form::submit('ログイン', ['class' => btn btn-success']) !!}
+                        {!! Form::submit('ログイン', ['class' => 'btn btn-success']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>
