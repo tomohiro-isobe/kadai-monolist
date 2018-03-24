@@ -123,4 +123,39 @@ class ItemUserController extends Controller
         }
         return redirect()->back();
     }
+    
+    public function have()
+    {
+        $itemCode = request()->itemCode;
+        
+        $client = new \RakutenRws_Client();
+        $client->setApplicationId(env('RAKUTEN_APPLICATION_ID'));
+        $r_response = $client->execute('IchibaItemSearch',[
+            'itemCode' => $itemCode,
+            ]);
+        $r_item = $r_response->getData()['Items'][0]['Item'];
+        
+        $item = Item::firstOrcreate([
+            'code' => $r_item['itemCode'],
+            'name' => $r_item['itemName'],
+            'url' => $r_item['itemUrl'],
+            'image_url' => str_replace('?_ex=128x128', '', $r_item['mediumImageUrls'][0]['imageUrl']),
+            ]);
+            
+            \Auth::user()->have($item->id);
+            
+            return redirect()->back();
+    }
+    
+    public function dont_have()
+    {
+        $itemCode = request()->itemCode;
+        
+        if (\Auth::user()->is_having($itemCode)) {
+            $itemId = Item::where('code', $itemCode)->first()->id;
+            \Auth::user()->dont_have($itemId);
+            
+        }
+        return redirect()->back();
+    }
 }
