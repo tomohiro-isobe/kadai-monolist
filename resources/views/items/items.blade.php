@@ -27,6 +27,12 @@
                                 <p class="text-center">{{ $key+1 }}位: {{ $item->count }} Wants</p>
                             </div>
                         @endif
+                        
+                        @if (isset($item->countHave))
+                            <div class="panel-footer">
+                                <p class="text-center">{{ $key+1 }}位: {{ $item->countHave }} Haves</p>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -28,6 +28,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ route('ranking.want') }}">wantランキング</a></li>
+                                <li><a href="{{ route('ranking.have') }}">haveランキング</a></li>
                             </ul>
                         </li>
 
