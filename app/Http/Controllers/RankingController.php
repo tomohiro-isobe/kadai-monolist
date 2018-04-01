@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Item;
+
 class RankingController extends Controller
 {
     /**
@@ -25,14 +27,16 @@ class RankingController extends Controller
              ]);
      }
      
-     public function have()
-     {
-         $items = \DB::table('item_user')->join('items', 'item_user.item_id', '=', 'items.id')->select('items.*', \DB::raw('COUNT(*) as countHave'))->where('type', 'have')->groupBy('items.id')->orderBy('countHave', 'DESC')->take(10)->get();
-         
-         return view('ranking.have', [
-             'items' => $items,
-             ]);
-     }
+     public function have() {
+        $items = [];
+        if (Item::exists()) {
+            $items = \DB::table('item_user')->join('items', 'item_user.item_id', '=', 'items.id')->select('items.*', \DB::raw('COUNT(*) as count'))->where('type', 'have')->groupBy('items.id')->orderBy('count', 'DESC')->take(10)->get();
+        }
+        
+        return view('ranking.have', [
+            'items' => $items,
+        ]);
+    }
      
     public function index()
     {

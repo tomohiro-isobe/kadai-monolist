@@ -30,7 +30,7 @@
                         
                         @if (isset($item->countHave))
                             <div class="panel-footer">
-                                <p class="text-center">{{ $key+1 }}位: {{ $item->countHave }} Haves</p>
+                                <p class="text-center">{{ $key+1 }}位: {{ $item->count }} Haves</p>
                             </div>
                         @endif
                     </div>
