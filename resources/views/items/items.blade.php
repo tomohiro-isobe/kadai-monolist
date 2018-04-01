@@ -28,9 +28,9 @@
                             </div>
                         @endif
                         
-                        @if (isset($item->countHave))
+                        @if (isset($item->counthave))
                             <div class="panel-footer">
-                                <p class="text-center">{{ $key+1 }}位: {{ $item->count }} Haves</p>
+                                <p class="text-center">{{ $key+1 }}位: {{ $item->counthave }} Haves</p>
                             </div>
                         @endif
                     </div>
