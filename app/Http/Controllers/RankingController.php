@@ -29,7 +29,7 @@ class RankingController extends Controller
      
      public function have()
      {
-         $items = \DB::table('item_user')->join('items', 'item_user.item_id', '=', 'items.id')->select('items.*', \DB::raw('COUNT(*) as counthave'))->where('type', 'have')->groupBy('items.id')->orderBy('countHave', 'DESC')->take(10)->get();
+         $items = \DB::table('item_user')->join('items', 'item_user.item_id', '=', 'items.id')->select('items.*', \DB::raw('COUNT(*) as have'))->where('type', 'have')->groupBy('items.id')->orderBy('have', 'DESC')->take(10)->get();
          
          return view('ranking.have', [
              'items' => $items,
